@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Gallery</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <link rel="stylesheet" href="fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+
+</head>
+<body>
+  <div class="container clearfix">
+    <div class="gallery">
+      <h1>jQuery Gallery</h1>
+
+      <div class="previews">
+          <a href="#" data-full="images/top1large.jpg"><img src="images/top1small.jpg" /></a>
+          <a href="#" data-full="images/top2large.jpg"><img src="images/top2small.jpg" /></a>
+          <a href="#" data-full="images/top3large.jpg"><img src="images/top3small.jpg" /></a>
+          <a href="#" data-full="images/top4large.jpg"><img src="images/top4small.jpg" /></a>
+          <a href="#" data-full="images/top5large.jpg"><img src="images/top5small.jpg" /></a>
+      </div>
+
+      <div class="full">
+          <!-- first image is viewable to start -->
+          <a href="images/top1large.jpg" class="fancybox"><img src="images/top1large.jpg" /></a>
+      </div>
+
+    </div>
+  </div>
+  
+  <script src="jquery.js"></script>
+  <script src="fancybox/jquery.fancybox.js?v=2.1.4"></script>
+
+  <script>
+  $(document).ready(function(){
+    $("a.fancybox").fancybox();
+    $('.previews a').on('click',function(){
+      $('.selected').removeClass('selected');
+      $(this).toggleClass('selected');
+
+      var source = $(this).data('full');
+      $('.full a').attr('href', source);
+
+
+      // $('.full img').hide().load(function(){
+      //   $('.full img').fadeIn("slow");
+      // });
+
+      $('.full img').fadeOut(300, function(){
+        //do stuff when animation finsihes
+        $('.full img').attr('src', source);
+        $('.full img').fadeIn();
+      });
+
+      // the fade out comes before the function
+
+  
+  });//preview img
+      
+    
+
+});//document ready
+  </script>
+
+</body>
+</html>
